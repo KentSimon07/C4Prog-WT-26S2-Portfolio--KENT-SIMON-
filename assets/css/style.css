@@ -42,6 +42,9 @@ article, aside {
     border: 2px solid black;
     margin-bottom: 1em; 
 }
+article img{
+    max-width: 100%;
+}
 .article1 {
     background-color: #FAF6F0;
 }
