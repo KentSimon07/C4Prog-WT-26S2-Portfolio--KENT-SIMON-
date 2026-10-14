@@ -1,23 +1,15 @@
-
-console.log('JavaScript file loaded successfully!');
 const emoji = document.getElementById('emoji');
 const airquality = document.getElementById('airquality');
 const apiInput = document.getElementById('api-input');
 const apiResponse = document.getElementById('api-response');
 const form = document.getElementById('ninja-form');
 
-
 const API_KEY = 'yPtLa0Hiz7X6wijO7fsFpR8BNSQsjy3Kq75Vyawm';
 
-let requestId = 0;
-
-
 function clearFields() {
-    requestId++;
     apiInput.value = '';
     apiResponse.textContent = '';
 }
-
 
 emoji.addEventListener('change', () => {
     if (emoji.checked) {
@@ -33,7 +25,6 @@ emoji.addEventListener('change', () => {
     }
 });
 
-
 airquality.addEventListener('change', () => {
     if (airquality.checked) {
         emoji.checked = false;
@@ -48,25 +39,13 @@ airquality.addEventListener('change', () => {
     }
 });
 
-
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
-console.log('Form submitted successfully!');
-
 
     apiResponse.textContent = '';
 
-    const currentRequest = ++requestId;
     const userInput = apiInput.value.trim();
-
     let url;
-
-
-    if (userInput === '') {
-        apiResponse.textContent = 'Please enter a value.';
-        return;
-    }
-
 
     if (emoji.checked) {
         url = 'https://api.api-ninjas.com/v1/emoji?name='
@@ -77,37 +56,30 @@ console.log('Form submitted successfully!');
             + encodeURIComponent(userInput);
 
     } else {
-        apiResponse.textContent = 'Please select an API.';
+        apiResponse.textContent = 'Error: Please select an API.';
+        return;
+    }
+
+    if (userInput === '') {
+        apiResponse.textContent = 'Error: Please enter a value.';
         return;
     }
 
     apiResponse.textContent = 'Loading...';
 
     try {
-
         const response = await fetch(url, {
-            method: 'GET',
             headers: {
                 'X-Api-Key': API_KEY
             }
         });
 
-        const data = await response.json().catch(() => null);
-
-
-        if (currentRequest !== requestId) {
-            return;
-        }
+        const data = await response.json();
 
         if (!response.ok) {
             throw new Error(
-                data?.error || data?.message
-                || `API request failed (${response.status}).`
+                data.error || data.message || 'API request failed.'
             );
-        }
-
-        if (data === null) {
-            throw new Error('Invalid API response.');
         }
 
         if (emoji.checked) {
@@ -123,10 +95,8 @@ console.log('Form submitted successfully!');
             });
 
             apiResponse.textContent = results.join('\n');
-        }
-
-        else if (airquality.checked) {
-            if (typeof data.overall_aqi !== 'number') {
+        } else if (airquality.checked) {
+            if (data.overall_aqi === undefined) {
                 throw new Error('No air quality data found.');
             }
 
@@ -142,8 +112,6 @@ console.log('Form submitted successfully!');
         }
 
     } catch (error) {
-        if (currentRequest === requestId) {
-            apiResponse.textContent = 'Error: ' + error.message;
-        }
+        apiResponse.textContent = 'Error: ' + error.message;
     }
 });
