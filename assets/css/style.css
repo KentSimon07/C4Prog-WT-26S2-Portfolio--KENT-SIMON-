@@ -1,7 +1,9 @@
+
 body {
     display: grid;
-    grid-template-rows: 80px 1fr minmax(650px, auto) minmax(100px, auto);
+    grid-template-rows: 80px auto 1fr auto;
 }
+
 header {
     display: flex;
     background-color: burlywood;
@@ -9,66 +11,77 @@ header {
     top: 0;
     height: 80px;
 }
+
 .menu {
-  display: block;
-  position: fixed;
-  right: 15px;
-  top: 25px;
-  margin-bottom: 25px;
-  border: none;
-  padding: 0;
+    display: block;
+    position: fixed;
+    right: 15px;
+    top: 25px;
+    margin-bottom: 25px;
+    border: none;
+    padding: 0;
 }
+
 .menu-line {
-  width: 20px;
-  height: 3px;
-  background-color: black;
-  margin: 0 0 3px 0;
-  padding: 0;
-  border: 0;
+    width: 20px;
+    height: 3px;
+    background-color: black;
+    margin: 0 0 3px;
+    padding: 0;
+    border: 0;
 }
+
 #menu-items {
     display: none;
 }
+
 main {
     display: flex;
     flex-direction: column;
+    width: 100%;
     max-width: 960px;
-    margin: 0 auto;
-    margin-top: 1em;
+    margin: 1em auto 0;
     padding: 0 1em;
+    box-sizing: border-box;
 }
-article, aside {
+
+article,
+aside {
+    min-width: 0;
     padding: 1em;
     border: 2px solid black;
-    margin-bottom: 1em; 
+    margin-bottom: 1em;
 }
-article img{
+
+article img {
     max-width: 100%;
 }
-.article1 {
+
+.article1,
+.article3 {
     background-color: #FAF6F0;
 }
-.article2 {
+
+.article2,
+.article4 {
     background-color: #F0E6D8;
 }
-.article3 {
-    background-color: #FAF6F0 ;
-}
-.article4 {
-    background-color: #F0E6D8 ;
-}
+
 .aside-main {
     display: none;
 }
+
 footer {
     display: flex;
     justify-content: space-between;
     background-color: burlywood;
     color: #000;
 }
+
 footer li {
     list-style: none;
 }
+
 footer li a {
     text-decoration: none;
     color: #3E3228;
@@ -78,71 +91,205 @@ footer li a {
     header {
         height: auto;
     }
-    #menu-items {
-        display: flex;
-    }
+
     .menu {
         display: none;
     }
+
     .top-nav {
         position: sticky;
         top: 80px;
         height: auto;
         background-color: beige;
     }
-    main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    }
-    .aside-main {
-    display: block;
-    grid-column: 3;
-    grid-row: 1/3;
-    }
-    .article1 {
-    grid-column: 1;
-    grid-row: 1;
-    }
-    .article2 {
-    grid-column: 2;
-    grid-row: 1;
-    }
-    .article3 {
-    grid-column: 1;
-    grid-row: 2;
-    background-color: #EDE4D5;
-    }
-    .article4 {
-    grid-column: 2;
-    grid-row: 2;
-    background-color: #E3D5BF;
-    }
-    main {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-    }
-    article, aside {
-        border: none;
-        margin-bottom: 0;
-    }
-    .aside-main {
-        display: block;
-        grid-column: 3;
-        grid-row: 1/3;
-        background-color: #E5D9C3;
-    }
+
     #menu-items {
         display: flex;
         max-width: 960px;
         margin: 0 auto;
     }
+
     .top-nav li {
         padding: 1em;
     }
+
     .top-nav a {
         text-decoration: none;
         color: blue;
     }
+
+    main {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, auto);
+        align-items: stretch;
+    }
+
+    article,
+    aside {
+        border: none;
+        margin-bottom: 0;
+    }
+
+    .article1 {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .article2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .article3 {
+        grid-column: 1;
+        grid-row: 2;
+        background-color: #EDE4D5;
+    }
+
+    .article4 {
+        grid-column: 2;
+        grid-row: 2;
+        background-color: #E3D5BF;
+    }
+
+    .aside-main {
+        display: block;
+        grid-column: 3;
+        grid-row: 1 / 3;
+        background-color: #E5D9C3;
+    }
+
+    body {
+    font-family: Arial, sans-serif;
+    }
+}
+
+/* /   NINJA API FORM */
+
+.ninja-api {
+    width: 100%;
+    min-width: 0;
+    margin: 25px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.ninja-api h2 {
+    font-size: 24px;
+    margin: 0 0 25px;
+}
+
+
+
+#ninja-form fieldset {
+    min-width: 0;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 20px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+
+
+
+#ninja-form legend {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 0;
+    margin: 0 auto 15px;
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+}
+
+
+
+#ninja-form fieldset:first-child label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+#ninja-form input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: #4caf50;
+}
+
+
+#ninja-form label[for="api-input"] {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+
+#api-input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0 15px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+
+#ninja-form button {
+    padding: 12px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#ninja-form button:hover {
+    background-color: #388e3c;
+}
+
+
+.api-results {
+    min-width: 0;
+    min-height: 110px;
+    margin-top: 15px;
+    padding: 20px 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.api-results h3 {
+    font-size: 18px;
+    margin: 0 0 15px;
+}
+
+#api-response {
+    display: block;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+#ninja-form fieldset {
+    display: flow-root;
+}
+
+#ninja-form legend {
+    float: left;
 }
