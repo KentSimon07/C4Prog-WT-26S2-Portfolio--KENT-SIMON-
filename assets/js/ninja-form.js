@@ -1,5 +1,5 @@
 
-
+console.log('JavaScript file loaded successfully!');
 const emoji = document.getElementById('emoji');
 const airquality = document.getElementById('airquality');
 const apiInput = document.getElementById('api-input');
@@ -7,7 +7,7 @@ const apiResponse = document.getElementById('api-response');
 const form = document.getElementById('ninja-form');
 
 
-const API_KEY = 'YOUR_API_KEY';
+const API_KEY = 'yPtLa0Hiz7X6wijO7fsFpR8BNSQsjy3Kq75Vyawm';
 
 let requestId = 0;
 
@@ -51,6 +51,7 @@ airquality.addEventListener('change', () => {
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
+console.log('Form submitted successfully!');
 
 
     apiResponse.textContent = '';
