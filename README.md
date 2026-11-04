@@ -8,3 +8,4 @@ Source: [ScreenCraft Components](https://components.dev.screencraft.net.au/)
 - **Navigation bar:** Links to each phase in the site.
 - **Footer:** Displays copyright details and links.
 - **Vertical card:** Displays each phase on the dashboard and references on the copyright page.
+- **Centred content:** Keeps the dashboard main area centred on the page.
